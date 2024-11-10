@@ -8,8 +8,6 @@ COPY app/ /app/
 
 RUN pip install -r requirements.txt
 
-COPY init_db.sql /app/init_db.sql
-
 RUN python /app/init_db.py
 
 EXPOSE 5000

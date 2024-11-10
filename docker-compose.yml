@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    volumes:
+      - data:/data
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db-init
+
+  db-init:
+    build: .
+    command: ["python", "/app/init_db.py"]
+    volumes:
+      - data:/data
+
+volumes:
+  data: {}

@@ -3,8 +3,10 @@ import sqlite3
 
 app = Flask(__name__)
 
+DATABASE = '/data/database.db'
+
 def get_db_connection():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row
     return conn
 
