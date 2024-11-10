@@ -3,4 +3,6 @@ docker stop <container_id> - stops container
 docker stop $(docker ps -aq) - stop all runing containers
 docker rm $(docker ps -aq) - remove all containers
 
-
+$headers = @{ "Content-Type" = "application/json" }
+$body = '{"title": "Third Post", "content": "This is the content of the third post"}'
+Invoke-WebRequest -Uri http://127.0.0.1:5000/posts -Method POST -Headers $headers -Body $body
