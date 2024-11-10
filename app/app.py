@@ -1,7 +1,7 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 import sqlite3
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 DATABASE = '/data/database.db'
 
@@ -12,7 +12,7 @@ def get_db_connection():
 
 @app.route('/', methods=['GET'])
 def home():
-    return "Welcome to the Flask API!"
+    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/posts', methods=['GET'])
 def get_posts():

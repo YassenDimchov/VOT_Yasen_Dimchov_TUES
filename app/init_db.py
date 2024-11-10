@@ -40,4 +40,4 @@ def add_example_posts():
 if __name__ == "__main__":
     os.makedirs(os.path.dirname(DATABASE), exist_ok=True)
     initialize_database()
-    add_example_posts()
+    #add_example_posts()
