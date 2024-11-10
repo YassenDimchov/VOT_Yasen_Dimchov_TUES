@@ -1,0 +1,8 @@
+docker ps - list containers
+docker stop <container_id> - stops container
+docker run -p 5000:5000 my_flask - run image
+docker build -t my_flask . - builds new image
+ADD new post:
+$headers = @{ "Content-Type" = "application/json" }
+$body = '{"title": "Third Post", "content": "This is the content of the third post"}'
+Invoke-WebRequest -Uri http://127.0.0.1:5000/posts -Method POST -Headers $headers -Body $body
