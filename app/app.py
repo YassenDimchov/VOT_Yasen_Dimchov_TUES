@@ -8,6 +8,10 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+@app.route('/', methods=['GET'])
+def home():
+    return "Welcome to the Flask API!"
+
 @app.route('/posts', methods=['GET'])
 def get_posts():
     conn = get_db_connection()
@@ -15,7 +19,7 @@ def get_posts():
     conn.close()
     return jsonify([dict(post) for post in posts])
 
-@app.route('/posts', methods=['POSTS'])
+@app.route('/posts', methods=['POST'])
 def create_post():
     new_post = request.get_json()
     title = new_post.get('title')
@@ -25,10 +29,10 @@ def create_post():
         return jsonify({"error": "Title and content are required"}), 400
     
     conn = get_db_connection()
-    conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)', title(title, content))
+    conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)', (title, content))
     conn.commit()
     conn.close()
-    return jsonify({"message":{"Post created successfully"}}), 201
+    return jsonify({"message":"Post created successfully"}), 201
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
